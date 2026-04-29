@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew & Noormah — December 13, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #F6F4F0;
+            --charcoal: #2A2A2A;
+            --warm-gray: #8A8580;
+            --sand: #D4CFC8;
+            --blush: #C9A98C;
+            --deep: #1A1A1A;
+            --glass: rgba(246, 244, 240, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            background-color: var(--ivory);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* ─── PRELOADER ─── */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--deep);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: preloaderFade 0.6s ease 2.2s forwards;
+        }
+
+        .preloader span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            color: var(--ivory);
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: preloaderText 1.8s ease 0.3s forwards;
+        }
+
+        @keyframes preloaderText {
+            0% { opacity: 0; letter-spacing: 0.8em; }
+            50% { opacity: 1; }
+            100% { opacity: 0; letter-spacing: 0.2em; }
+        }
+
+        @keyframes preloaderFade {
+            to { opacity: 0; pointer-events: none; }
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(246, 244, 240, 0.8);
+            border-bottom: 1px solid rgba(212, 207, 200, 0.4);
+            transition: transform 0.4s ease;
+        }
+
+        nav .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--warm-gray);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--blush);
+            transition: width 0.3s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--charcoal);
+        }
+
+        nav .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(201, 169, 140, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(212, 207, 200, 0.12) 0%, transparent 50%);
+            animation: bgShift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgShift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-5%, -3%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-date-top {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 2.6s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 1.05;
+            color: var(--charcoal);
+            margin-bottom: 0.3em;
+        }
+
+        .hero h1 .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .hero h1 .line:nth-child(1) { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2.5s forwards; }
+        .hero h1 .line:nth-child(2) { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2.7s forwards; font-style: italic; font-weight: 300; font-size: 0.4em; letter-spacing: 0.15em; color: var(--blush); }
+        .hero h1 .line:nth-child(3) { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2.9s forwards; }
+
+        .hero-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--blush);
+            margin: 2rem auto;
+            opacity: 0;
+            animation: fadeUp 1s ease 3.1s forwards;
+        }
+
+        .hero-venue {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            opacity: 0;
+            animation: fadeUp 1s ease 3.3s forwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 3.6s forwards;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--sand);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--blush), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 0.5; }
+            50% { transform: scaleY(1.3); opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 8rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--blush);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+        }
+
+        /* ─── DETAILS SECTION ─── */
+        #details {
+            text-align: center;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .detail-card {
+            padding: 2.5rem 1.5rem;
+            border: 1px solid var(--sand);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 1px;
+            background: var(--blush);
+        }
+
+        .detail-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            display: block;
+            color: var(--blush);
+        }
+
+        .detail-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .detail-card p {
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+            line-height: 1.6;
+        }
+
+        /* ─── VENUE SECTION ─── */
+        #venue {
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        .venue-card {
+            margin-top: 3rem;
+            background: white;
+            border: 1px solid var(--sand);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .venue-map {
+            min-height: 350px;
+            background: var(--sand);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .venue-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.8) contrast(1.1);
+        }
+
+        .venue-info {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .venue-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .venue-info p {
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .venue-info a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            text-decoration: none;
+            border-bottom: 1px solid var(--blush);
+            padding-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .venue-info a:hover {
+            color: var(--blush);
+        }
+
+        /* ─── RSVP SECTION ─── */
+        #rsvp {
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .rsvp-wrapper {
+            margin-top: 3rem;
+            background: white;
+            border: 1px solid var(--sand);
+            padding: 3rem;
+            position: relative;
+        }
+
+        .rsvp-wrapper p {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .rsvp-form-embed {
+            width: 100%;
+            min-height: 600px;
+            border: none;
+        }
+
+        .rsvp-placeholder {
+            padding: 3rem;
+            border: 2px dashed var(--sand);
+            text-align: center;
+        }
+
+        .rsvp-placeholder h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .rsvp-placeholder p {
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .rsvp-placeholder code {
+            display: inline-block;
+            margin-top: 1rem;
+            background: var(--ivory);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            color: var(--blush);
+            border: 1px solid var(--sand);
+            word-break: break-all;
+        }
+
+        .btn-rsvp {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 3rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ivory);
+            background: var(--charcoal);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .btn-rsvp:hover {
+            background: var(--blush);
+            color: var(--deep);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            border-top: 1px solid var(--sand);
+        }
+
+        footer .monogram {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--blush);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--sand);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            nav .nav-links {
+                gap: 1.5rem;
+            }
+
+            nav .nav-links a {
+                font-size: 0.65rem;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .venue-card {
+                grid-template-columns: 1fr;
+            }
+
+            .venue-map {
+                min-height: 250px;
+            }
+
+            .venue-info {
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .rsvp-wrapper {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* ─── SCROLL ANIMATIONS ─── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <span>Andrew & Noormah</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">A & N</div>
+        <ul class="nav-links">
+            <li><a href="#details">Details</a></li>
+            <li><a href="#venue">Venue</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-date-top">December 13, 2026</p>
+            <h1>
+                <span class="line">Andrew</span>
+                <span class="line">&</span>
+                <span class="line">Noormah</span>
+            </h1>
+            <div class="hero-divider"></div>
+            <p class="hero-venue">Taipei Marriott Hotel &nbsp;·&nbsp; Taipei, Taiwan</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Details -->
+    <section id="details">
+        <p class="section-label fade-in">The Details</p>
+        <h2 class="section-title fade-in">We would be honored<br>by your presence</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <span class="detail-icon">✦</span>
+                <h3>Date</h3>
+                <p>Sunday<br>December 13, 2026</p>
+            </div>
+            <div class="detail-card">
+                <span class="detail-icon">✦</span>
+                <h3>Ceremony</h3>
+                <p>4:00 PM<br>Grand Ballroom</p>
+            </div>
+            <div class="detail-card">
+                <span class="detail-icon">✦</span>
+                <h3>Reception</h3>
+                <p>To follow<br>immediately after</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue -->
+    <section id="venue">
+        <p class="section-label fade-in">The Venue</p>
+        <h2 class="section-title fade-in">Taipei Marriott Hotel</h2>
+        <div class="venue-card fade-in">
+            <div class="venue-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.7!2d121.5579!3d25.0785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac7b77777777%3A0x1234567890abcdef!2sTaipei%20Marriott%20Hotel!5e0!3m2!1sen!2stw!4v1234567890" 
+                    allowfullscreen 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="venue-info">
+                <h3>Taipei Marriott Hotel</h3>
+                <p>
+                    No. 199, Lequn 2nd Road<br>
+                    Zhongshan District<br>
+                    Taipei City 104, Taiwan
+                </p>
+                <a href="https://www.google.com/maps/search/Taipei+Marriott+Hotel" target="_blank">
+                    Get Directions →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp">
+        <p class="section-label fade-in">Respond</p>
+        <h2 class="section-title fade-in">RSVP</h2>
+        <div class="rsvp-wrapper fade-in">
+            <p>Kindly respond by November 13, 2026</p>
+
+            <!-- 
+                ╔══════════════════════════════════════════════════════════════╗
+                ║  GOOGLE FORM EMBED INSTRUCTIONS                            ║
+                ║                                                            ║
+                ║  Replace the placeholder below with your Google Form.      ║
+                ║                                                            ║
+                ║  1. Create your form at https://forms.google.com           ║
+                ║  2. Click "Send" → Click the embed icon (<>)               ║
+                ║  3. Copy the URL from the iframe src="..."                 ║
+                ║  4. Replace YOUR_GOOGLE_FORM_ID below with the form URL   ║
+                ║  5. Remove the .rsvp-placeholder div                       ║
+                ║  6. Uncomment the iframe below                             ║
+                ╚══════════════════════════════════════════════════════════════╝
+            -->
+
+            <div class="rsvp-placeholder">
+                <h3>Google Form Goes Here</h3>
+                <p>
+                    Create your Google Form, then replace this placeholder.<br>
+                    See the HTML comments above for step-by-step instructions.
+                </p>
+                <code>&lt;iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"&gt;</code>
+            </div>
+
+            <!-- Uncomment this after adding your Google Form URL: -->
+            <!--
+            <iframe 
+                class="rsvp-form-embed"
+                src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0">
+                Loading…
+            </iframe>
+            -->
+
+            <a href="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform" target="_blank" class="btn-rsvp">
+                Open RSVP Form
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="monogram">A & N</div>
+        <p>December 13, 2026 &nbsp;·&nbsp; Taipei</p>
+    </footer>
+
+    <script>
+        // ─── Scroll-triggered animations ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in, .detail-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ─── Smooth scroll for nav links ───
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
