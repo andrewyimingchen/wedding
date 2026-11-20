@@ -282,7 +282,7 @@
 
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 3rem;
             margin-top: 4rem;
         }
@@ -570,7 +570,6 @@
         <ul class="nav-links">
             <li><a href="#details">Details</a></li>
             <li><a href="#venue">Venues</a></li>
-            <li><a href="#rsvp">RSVP</a></li>
         </ul>
     </nav>
 
@@ -599,18 +598,20 @@
         <div class="details-grid">
             <div class="detail-card">
                 <span class="detail-icon">✦</span>
-                <h3>Date</h3>
-                <p>Sunday<br>December 13, 2026</p>
-            </div>
-            <div class="detail-card">
-                <span class="detail-icon">✦</span>
                 <h3>Wedding Event</h3>
-                <p>December 13, 2026<br>4:00 PM<br>Taipei Marriott Hotel</p>
+                <p>December 13, 2026<br>Taipei Marriott Hotel</p>
+                <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--warm-gray); line-height: 1.8;">
+                    5:30 PM – 6:30 PM · Cocktail<br>
+                    6:00 PM – 9:00 PM · Dinner
+                </p>
             </div>
             <div class="detail-card">
                 <span class="detail-icon">✦</span>
                 <h3>Party Event</h3>
-                <p>December 14, 2026<br>4:00 PM<br>Pigalle, Da'an District</p>
+                <p>December 14, 2026<br>Pigalle, Da'an District</p>
+                <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--warm-gray); line-height: 1.8;">
+                    6:00 PM
+                </p>
             </div>
         </div>
     </section>
@@ -618,13 +619,14 @@
     <!-- Venues -->
     <section id="venue">
         <p class="section-label fade-in">The Venues</p>
+
         <h2 class="section-title fade-in">Taipei Marriott Hotel</h2>
         <p class="section-label fade-in" style="margin-top: -1rem; color: var(--warm-gray); letter-spacing: 0.2em;">Wedding Event · December 13</p>
         <div class="venue-card fade-in">
             <div class="venue-map">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.7!2d121.5579!3d25.0785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac7b77777777%3A0x1234567890abcdef!2sTaipei%20Marriott%20Hotel!5e0!3m2!1sen!2stw!4v1234567890" 
-                    allowfullscreen 
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.7!2d121.5579!3d25.0785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac7b77777777%3A0x1234567890abcdef!2sTaipei%20Marriott%20Hotel!5e0!3m2!1sen!2stw!4v1234567890"
+                    allowfullscreen
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
@@ -646,9 +648,9 @@
         <p class="section-label fade-in" style="margin-top: -1rem; color: var(--warm-gray); letter-spacing: 0.2em;">Party Event · December 14</p>
         <div class="venue-card fade-in">
             <div class="venue-map">
-                <iframe 
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:ChIJia3WCACrQjQR0jQAdtH4WWI&zoom=16" 
-                    allowfullscreen 
+                <iframe
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:ChIJia3WCACrQjQR0jQAdtH4WWI&zoom=16"
+                    allowfullscreen
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
@@ -657,35 +659,13 @@
                 <h3>Pigalle</h3>
                 <p>
                     No. 17, Section 2, Anhe Road<br>
-                    Da'an District<br>
+                    Tong'an Village, Da'an District<br>
                     Taipei City 10680, Taiwan
                 </p>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=25.0323657,121.5526654&destination_place_id=ChIJia3WCACrQjQR0jQAdtH4WWI" target="_blank">
                     Get Directions →
                 </a>
             </div>
-        </div>
-    </section>
-
-    <!-- RSVP -->
-    <section id="rsvp">
-        <p class="section-label fade-in">Respond</p>
-        <h2 class="section-title fade-in">RSVP</h2>
-        <div class="rsvp-wrapper fade-in">
-            <p>Kindly respond by November 13, 2026</p>
-
-            <iframe 
-                class="rsvp-form-embed"
-                src="https://docs.google.com/forms/d/e/1FAIpQLSfFVwXXJa5tTpGyRV7fIc0nZnzG0tuZyp1Gst7mcntU2pC-dg/viewform?embedded=true"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0">
-                Loading…
-            </iframe>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfFVwXXJa5tTpGyRV7fIc0nZnzG0tuZyp1Gst7mcntU2pC-dg/viewform" target="_blank" class="btn-rsvp">
-                Open RSVP Form
-            </a>
         </div>
     </section>
 
